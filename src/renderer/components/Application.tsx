@@ -1,11 +1,15 @@
-import { hot } from 'react-hot-loader/root';
-import * as React from 'react';
+import { hot } from "react-hot-loader/root";
+import * as React from "react";
 
-import CounterContainer from '../containers/CounterContainer';
+import Navbar from "./navbar/Navbar";
+import CounterContainer from "../containers/CounterContainer";
+
+// FIXME:check if import worked
+// import 'typeface-roboto';
 
 const Application = () => (
     <div>
-        Hello World from Electron!
+        <Navbar />
         <CounterContainer />
     </div>
 );
