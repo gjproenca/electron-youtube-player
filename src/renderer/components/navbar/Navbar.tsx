@@ -7,9 +7,12 @@ class Navbar extends React.Component {
     constructor(props: any) {
         super(props);
 
+        const apiKey = "AIzaSyBsNHWyO6v2Y5TsB-jL6LXMo3-0udswUxk";
+        const playlistId = "PLH69W7vrLQqZuiM2YbS8prU7ddDWZuM7U";
+
         // TODO: working fetch need the right info
         const request = fetch(
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBsNHWyO6v2Y5TsB-jL6LXMo3-0udswUxk&q=mountain%20bikes",
+            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${apiKey}`,
             {
                 headers: {
                     Accept: "application/json"
