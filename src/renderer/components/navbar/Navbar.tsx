@@ -45,7 +45,11 @@ const getPlaylistVideos = async () => {
             }
         );
         const data = await response.json();
+
+        const videoIds: string[] = data.items.map((item: any) => item.snippet.resourceId.videoId);
+
         console.log(data);
+        console.log(videoIds);
     } catch (e) {
         console.log(`There was an error fetching the playlist videos: ${e}`);
     }
