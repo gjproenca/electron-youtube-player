@@ -46,13 +46,24 @@ const getPlaylistVideos = async () => {
         );
         const data = await response.json();
 
-        const videoIds: string[] = data.items.map((item: any) => item.snippet.resourceId.videoId);
+        // TODO: get next token to get all vids
+        // TODO: ? get size of thumbnail in request
+        // TODO: ? return array of objects instead of direct array
+        const videoIds: any[] = data.items.map((item: any) => [
+            item.snippet.resourceId.videoId,
+            item.snippet.title,
+            item.snippet.thumbnails.standard.url
+        ]);
 
         console.log(data);
         console.log(videoIds);
+
+        return videoIds;
     } catch (e) {
         console.log(`There was an error fetching the playlist videos: ${e}`);
     }
+    // FIXME: change this line it must havea return
+    return "Error";
 };
 
 export default Navbar;

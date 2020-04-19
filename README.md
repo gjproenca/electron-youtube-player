@@ -1,19 +1,5 @@
 ## Summary
-This project makes uses of a boilerplate of electron/react/typescript for faster developement. It is intended to be a practise project where I show and practise my skills as a developer by building youtube playlist player desktop application using electron react and typescript.
-
-## Install
-Clone the repository with Git:
-
-```bash
-git clone --depth=1 git@github.com:Robinfr/electron-react-typescript.git <your-project-name>
-```
-
-And then install the dependencies:
-
-```bash
-cd <your-project-name>
-npm install
-```
+This project makes uses of a boilerplate of electron/react/typescript for faster developement. It is intended to be a practise project where I show and practise my skills as a developer by building youtube playlist player desktop application using electron, react and typescript.
 
 ## Usage
 Both processes have to be started **simultaneously** in different console tabs:
@@ -60,4 +46,4 @@ In case you want to get rid of this, you can removing the following from `packag
 Also remove all mentions of Prettier from the `extends` section in `.eslintrc.json`.
 
 ## License
-MIT © [R. Franken](https://github.com/Robinfr)
+MIT © [G. Proenca](https://github.com/gjproenca)
