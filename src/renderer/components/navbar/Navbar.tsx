@@ -1,14 +1,23 @@
 import * as React from "react";
 
 import "./Navbar.scss";
-import { Grid, Input, Button } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 
 class Navbar extends React.Component<{}, { items: any[] }> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            items: []
+            items: ["ss", "s", "s", "s"]
         };
     }
 
@@ -47,6 +56,8 @@ class Navbar extends React.Component<{}, { items: any[] }> {
 
             this.setState({ items: itemsInformation });
 
+            console.log(this.state.items[0][0]);
+
             return itemsInformation;
         } catch (e) {
             console.log(`There was an error fetching the playlist videos: ${e}`);
@@ -68,13 +79,45 @@ class Navbar extends React.Component<{}, { items: any[] }> {
                     placeholder="Paste the playlist id here"
                     defaultValue="PLH69W7vrLQqZuiM2YbS8prU7ddDWZuM7U"
                     />
+
+                <hr />
+
                 <Button
                     onClick={() => this.getPlaylistVideos()}
                     variant="contained"
                     color="primary">
                     Load Playlist
                 </Button>
-                {this.state.items}
+
+                <hr />
+
+                <Card>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="Contemplative Reptile"
+                            height="140"
+                            image={this.state.items[0][3]}
+                            title="Contemplative Reptile"
+                            />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {this.state.items[0][1]}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {this.state.items[0][2]}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                            Share
+                        </Button>
+                        <Button size="small" color="primary">
+                            Learn More
+                        </Button>
+                    </CardActions>
+                </Card>
             </Grid>
         );
     }
