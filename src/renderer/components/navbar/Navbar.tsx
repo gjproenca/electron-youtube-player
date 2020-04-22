@@ -17,7 +17,7 @@ class Navbar extends React.Component<{}, { items: any[] }> {
         super(props);
 
         this.state = {
-            items: ["ss", "s", "s", "s"]
+            items: ["", "", "", ""]
         };
     }
 
@@ -91,33 +91,36 @@ class Navbar extends React.Component<{}, { items: any[] }> {
 
                 <hr />
 
-                <Card>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt="Contemplative Reptile"
-                            height="140"
-                            image={this.state.items[0][3]}
-                            title="Contemplative Reptile"
-                            />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {this.state.items[0][1]}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {this.state.items[0][2]}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Share
-                        </Button>
-                        <Button size="small" color="primary">
-                            Learn More
-                        </Button>
-                    </CardActions>
-                </Card>
+                {/* TODO: remove created array use original array */}
+                {/* TODO: extreact card component to won component */}
+                {/* TODO: change title and alt */}
+                {this.state.items.map((item, index) => (
+                    // TODO: use video id as key or use 'react-uuid'
+                    // eslint-disable-next-line react/no-array-index-key
+                    <div key={index}>
+                        <Card>
+                            <CardActionArea>
+                                <CardMedia component="img" height="140" image={item[3]} />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {item[1]}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {item[2]}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
+                                <Button size="small" color="primary">
+                                    Share
+                                </Button>
+                                <Button size="small" color="primary">
+                                    Learn More
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </div>
+                ))}
             </Grid>
         );
     }
