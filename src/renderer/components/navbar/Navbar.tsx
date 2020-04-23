@@ -1,23 +1,20 @@
 import * as React from "react";
 
 import "./Navbar.scss";
+
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
+import CardComponent from "../cardComponent/CardComponent";
 
 class Navbar extends React.Component<{}, { items: any[] }> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            items: ["", "", "", ""]
+            items: []
         };
     }
 
@@ -56,14 +53,13 @@ class Navbar extends React.Component<{}, { items: any[] }> {
 
             this.setState({ items: itemsInformation });
 
-            console.log(this.state.items[0][0]);
-
             return itemsInformation;
         } catch (e) {
-            console.log(`There was an error fetching the playlist videos: ${e}`);
+            console.log(`There was an error fetching the playlist: ${e}`);
         }
-        // FIXME: change this line it must have a return
-        return "Error";
+
+        // FIXME: refactor this line
+        return "Change this";
     };
 
     render() {
@@ -80,8 +76,6 @@ class Navbar extends React.Component<{}, { items: any[] }> {
                     defaultValue="PLH69W7vrLQqZuiM2YbS8prU7ddDWZuM7U"
                     />
 
-                <hr />
-
                 <Button
                     onClick={() => this.getPlaylistVideos()}
                     variant="contained"
@@ -89,38 +83,25 @@ class Navbar extends React.Component<{}, { items: any[] }> {
                     Load Playlist
                 </Button>
 
-                <hr />
+                <br />
+                <Divider />
 
                 {/* TODO: remove created array use original array */}
                 {/* TODO: extreact card component to won component */}
                 {/* TODO: change title and alt */}
-                {this.state.items.map((item, index) => (
-                    // TODO: use video id as key or use 'react-uuid'
-                    // eslint-disable-next-line react/no-array-index-key
-                    <div key={index}>
-                        <Card>
-                            <CardActionArea>
-                                <CardMedia component="img" height="140" image={item[3]} />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {item[1]}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {item[2]}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </div>
-                ))}
+                {this.state.items.length > 0
+                    ? this.state.items.map(item => (
+                          <div key={item[0]}>
+                              <br />
+
+                              <CardComponent
+                                  imageSrc={item[3]}
+                                  title={item[1]}
+                                  subtitle={item[2]}
+                                  />
+                          </div>
+                      ))
+                    : ""}
             </Grid>
         );
     }
