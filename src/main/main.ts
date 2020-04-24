@@ -4,6 +4,7 @@ import * as url from "url";
 
 let win: BrowserWindow | null;
 
+// TODO: if extensions not working add 7zip-lite folder from node modules to dist folder
 const installExtensions = async () => {
     const installer = require("electron-devtools-installer");
     const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
