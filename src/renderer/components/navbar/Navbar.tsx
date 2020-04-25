@@ -5,16 +5,15 @@ import "./Navbar.scss";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
 
 import CardComponent from "../cardComponent/CardComponent";
 
-class Navbar extends React.Component<{}, { items: any[] }> {
+class Navbar extends React.Component<{}, { youtubeData: any }> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            items: []
+            youtubeData: {}
         };
     }
 
@@ -36,30 +35,17 @@ class Navbar extends React.Component<{}, { items: any[] }> {
                     }
                 }
             );
-            const data = await response.json();
+            const responseJson = await response.json();
 
             // TODO: get next token to get all vids
             // TODO: ? get size of thumbnail in request
-            // TODO: ? return array of objects instead of direct array
-            const itemsInformation: any[] = data.items.map((item: any) => [
-                item.snippet.resourceId.videoId,
-                item.snippet.title,
-                item.snippet.description,
-                item.snippet.thumbnails.standard.url
-            ]);
 
-            console.log(data);
-            console.log(itemsInformation);
+            console.log(responseJson);
 
-            this.setState({ items: itemsInformation });
-
-            return itemsInformation;
+            this.setState({ youtubeData: responseJson });
         } catch (e) {
             console.log(`There was an error fetching the playlist: ${e}`);
         }
-
-        // FIXME: refactor this line
-        return "Change this";
     };
 
     render() {
@@ -84,20 +70,16 @@ class Navbar extends React.Component<{}, { items: any[] }> {
                 </Button>
 
                 <br />
-                <Divider />
 
-                {/* TODO: remove created array use original array */}
-                {/* TODO: extreact card component to won component */}
-                {/* TODO: change title and alt */}
-                {this.state.items.length > 0
-                    ? this.state.items.map(item => (
-                          <div key={item[0]}>
+                {Object.keys(this.state.youtubeData).length > 0
+                    ? this.state.youtubeData.items.map((item: any) => (
+                          <div key={item.snippet.resourceId.videoId}>
                               <br />
 
                               <CardComponent
-                                  imageSrc={item[3]}
-                                  title={item[1]}
-                                  subtitle={item[2]}
+                                  imageSrc={item.snippet.thumbnails.standard.url}
+                                  title={item.snippet.title}
+                                  subtitle={item.snippet.description}
                                   />
                           </div>
                       ))
